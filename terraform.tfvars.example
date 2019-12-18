@@ -1,0 +1,10 @@
+# DO NOT COMMIT THIS FILE TO A PUBLIC REPO!
+# add *.tfvars to an ignore file
+
+auth_token      = "<yourPacketOrgAuthToken with R/W>"
+project_name    = "consul-geo-failover"
+hostnamea       = "consul-sjc1"
+hostnameb       = "consul-ewr1"
+facilitya       = "sjc1"
+facilityb       = "ewr1"
+consul-version  = "1.6.2"
