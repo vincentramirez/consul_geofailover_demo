@@ -70,21 +70,15 @@ data "template_file" "mesh-gateway-b" {
   }
 }
 
-data "template_file" "resolver-a" {
-  template = file("templates/resolvera.hcl")
+data "template_file" "resolver" {
+  template = file("templates/resolver.hcl")
 
   vars = {
-    facility    = var.facilityb
+    facilitya    = var.facilitya
+    facilityb    = var.facilityb
   }
 }
 
-data "template_file" "resolver-b" {
-  template = file("templates/resolverb.hcl")
-
-  vars = {
-    facility    = var.facilitya
-  }
-}
 
 
 
@@ -150,7 +144,7 @@ resource "null_resource" "configure_consula" {
   }
 
   provisioner "file" {
-    content     = data.template_file.resolver-a.rendered
+    content     = data.template_file.resolver.rendered
     destination = "/tmp/resolver.hcl"
   }
 
@@ -235,7 +229,7 @@ resource "null_resource" "configure_consulb" {
   }
 
   provisioner "file" {
-    content     = data.template_file.resolver-b.rendered
+    content     = data.template_file.resolver.rendered
     destination = "/tmp/resolver.hcl"
   }
 
